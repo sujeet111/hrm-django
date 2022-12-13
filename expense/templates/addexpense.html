@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 style='display:flex;justifi-content'>Create New Expense</h1>
+    {% for form in form %}
+        <div class="form-group">
+            {{ form.label_tag }}
+            {% if form.field.required %}<span class="text-danger">*</span>{% endif %}
+            {{ form }}
+            {{ form.errors }}
+            </div>
+    {% endfor %}
+{% endblock %}
