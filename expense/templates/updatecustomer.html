@@ -1,23 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container">
-        <p class='display-5 d-flex justify-content-center p-3'>Create New Expense</p>
+    <div class="container-fluid">
+        <p class='display-5 d-flex justify-content-center p-3'>Create New Customer Profile</p>
         <div class='card p-3'>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %} 
                 {% for form in form %}
-                <div class="row align-items-start form-group pt-3">
-                    <div class="col-3">
+                    <div class="form-group">
                         {{ form.label_tag }}
-                        {% if form.field.required %}
-                            <span class="text-danger">*</span>
-                        {% endif %}
-                    </div>
-                    <div class="col-8">
+                        {% if form.field.required %}<span class="text-danger">*</span>{% endif %}
                         {{ form }}
                     </div>
-                </div>
                 {% endfor %}
                 <button type="submit">Submit</button>
             </form>

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='container-fluid'>
+  <p class='display-5 d-flex justify-content-center p-3'>Manage Customers</p>
+    {% if field %}
+        <div class="card p-2" >
+<!--             Create a table here -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Created by</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in field %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{x.name}}</td>
+                            <td>{{x.city}}</td>
+                            <td>{{x.address}}</td>
+                            <td>{{x.created_by}}</td> 
+                            <td>
+                                <a href='{% url "Delete Customer" x.id %}'>Delete</a>&ensp;|&ensp;
+                                <a href='{% url "Update Customer" x.id %}'>Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    {% else %}
+        <div class="card">
+            <h5 class='card-title d-flex justify-content-center p-2'>Nothing to show here</h5>
+    {% endif %}
+</div>
+
+
+
+<!---modal--->
+<div class="modal fade" tabindex="-1" aria-labelledby="add_Customer" aria-hidden="true" id="add_Customer" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Customer Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="model-body ">
+                    <div class="container">
+                            {% csrf_token %} 
+                        <div class="form-group">
+                            {% for form in form %}
+                                <div class="row m-2">
+                                    <div class='col-4'>{{ form.label_tag }}
+                                        {% if form.field.required %}<span class="text-danger">*</span>{% endif %}</div>
+                                    <div class='col-8'>
+                                        {{ form }}
+                                    </div>
+                                    </div>
+                            {% endfor %}
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+        
+<!-----end-modal---->
+
+
+
+<button class="btn btn-secondary mb-2 btn-lg col-11 fixed-bottom bottom-0 start-50 translate-middle-x" style='background: #063C6B;
+border-radius: 100px;' data-bs-toggle="modal" data-bs-target="#add_Customer" style="margin-top: 50px!important;">Add Customer</button>
+{% endblock %}

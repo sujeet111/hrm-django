@@ -30,6 +30,25 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     
 	path('dashboard/',expense_views.dashboard, name='dashboard'),
-    path('addexpense/',expense_views.add_expense,name='New Expense')
+    path('add_expense/',expense_views.add_expense,name='New Expense'),
+    path("update_expense/<int:id>",expense_views.update_expense,name='Update Expense'),
+    path("delete_expense/<int:id>",expense_views.delete_expense,name='Delete Expense'),
+    path("approve_expense/<int:id>",expense_views.approve_expese,name='Approve Expense'),
+    path("reject_expense/<int:id>",expense_views.reject_expese,name='Reject Expense'),
 
+
+
+
+    
+    path('managecustomer/',expense_views.customer_view,name='Manage Customer'),
+    
+    path('deletecustomer/<int:id>',expense_views.customer_del,name='Delete Customer'),
+    path('disablecustomer/<int:id>',expense_views.customer_disable,name='disable Customer'),
+    path('enablecustomer/<int:id>',expense_views.customer_enable,name='enable Customer'),
+    path("updatecustomer/<int:id>",expense_views.customer_update,name='Update Customer'),
+    
+    
 ]
+
+
+

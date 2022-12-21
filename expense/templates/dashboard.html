@@ -1,7 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>dashboard</h1>
-  <p>name: {{user.username}}</p>
-    <p> <a href='/addexpense'>New expense</a></p>
+<div class='container-fluid'>
+    <p class='display-5 d-flex justify-content-center p-3'>Welcome {{user.username}}</p>
+    <div class="card m-2" 
+        style="background: linear-gradient(92.21deg, #063C6B -1.44%, #9DC7FF 124.75%);
+        color: #FFFFFF;margin-block:12px">
+        <div class="card-body">
+            <h5 class="card-title">Rs. {{sum_amount}}</h5>
+            <p class="card-text">Total Amount Claimed</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+        <p class='h3 m-3'>Recently Added</p>
+        {% for x in field %}
+            {% if x.Approved_status == None %}
+                <div class="card text-dark bg-warning m-2 ">
+            {% elif x.Approved_status == True %}
+                <div class="card text-dark bg-success m-2">
+            {% elif x.Approved_status == False %}
+                <div class="card text-dark bg-danger m-2">
+            {% endif %}
+                <div class='row'>
+                    <div class='col-md-1'></div>
+                    <div class='col-md-8'>
+                        <div class="card-body">
+                            <h5 class="card-title">Rs. {{x.Expenses}}</h5>
+                            <p class="card-text">{{x.Company_Name}}</p>
+                            <p class="card-text">{{x.Approved_status}}</p>
+                        </div>
+                    </div>
+                    <div class='card-body col-md-3 d-flex align-items-center text-black'>
+                        <a href='{% url "Update Expense" x.id %}'>Edit</a>
+                        &ensp;|&ensp;
+                        <a href='{% url "Delete Expense" x.id %}'>Delete</a>
+                        {% if user.is_superuser %}
+                        &ensp;|&ensp;
+                        <a href='{% url "Approve Expense" x.id %}'>Approve</a>
+                        &ensp;|&ensp;
+                        <a href='{% url "Reject Expense" x.id %}'>Reject</a>
+                        {% endif%}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+</div>
+<div class='container-fluid'>
+    <div class='btn mb-2 btn-lg col-11 fixed-bottom bottom-0 start-50 translate-middle-x' style='background: #063C6B;
+border-radius: 100px;' >
+        <a class='text-white' href="{% url 'New Expense'%}">New expense</a>
+    </div>
+</div>
+
 {% endblock %}
