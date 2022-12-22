@@ -27,7 +27,7 @@ if SECRET_KEY is None:
   exit(1)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = flase
+DEBUG = False
 
 ALLOWED_HOSTS = ['bludigit.azurewebsites.net']
 X_FRAME_OPTIONS = '*'
