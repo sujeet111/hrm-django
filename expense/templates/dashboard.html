@@ -17,11 +17,11 @@
         <p class='h3 m-3'>Recently Added</p>
         {% for x in field %}
             {% if x.Approved_status == None %}
-                <div class="card text-dark bg-warning m-2 ">
+                <div class="card text-dark border-warning m-2 border border-3 ">
             {% elif x.Approved_status == True %}
-                <div class="card text-dark bg-success m-2">
+                <div class="card text-dark border-success m-2 border border-3">
             {% elif x.Approved_status == False %}
-                <div class="card text-dark bg-danger m-2">
+                <div class="card text-dark border-danger m-2 border border-3">
             {% endif %}
                 <div class='row'>
                     <div class='col-md-1'></div>
@@ -37,10 +37,14 @@
                         &ensp;|&ensp;
                         <a href='{% url "Delete Expense" x.id %}'>Delete</a>
                         {% if user.is_superuser %}
-                        &ensp;|&ensp;
-                        <a href='{% url "Approve Expense" x.id %}'>Approve</a>
-                        &ensp;|&ensp;
-                        <a href='{% url "Reject Expense" x.id %}'>Reject</a>
+                            {% if x.Approved_status or x.Approved_status == None  %}
+                                &ensp;|&ensp;
+                                <a href='{% url "Approve Expense" x.id %}'>Approve</a>
+                            {% endif%}
+                            {% if not x.Approved_status or x.Approved_status == None %}
+                                &ensp;|&ensp;
+                                <a href='{% url "Reject Expense" x.id %}'>Reject</a>
+                            {% endif%}
                         {% endif%}
                     </div>
                 </div>
