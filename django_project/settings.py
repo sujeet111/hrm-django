@@ -20,22 +20,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'NPTg48IDFtMxe2nyRPJ4gtQqkk-TVr4kUoPLlECeCNU'
 
 if SECRET_KEY is None:
   print("Please setup a SECRET_KEY in the Secrets (Environment variables) tab. See README.md for more.")
   exit(1)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = flase
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['bludigit.azurewebsites.net']
 X_FRAME_OPTIONS = '*'
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -131,3 +132,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'dashboard'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'expense/static'),]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = BASE_DIR / 'staticfiles'
