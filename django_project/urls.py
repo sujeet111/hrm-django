@@ -16,35 +16,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-
+from users.forms import UserLoginForm
 from users import views as user_views
 from expense import views as expense_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', user_views.home, name='home'),
+    path('', auth_views.LoginView.as_view(template_name='users/login.html',authentication_form=UserLoginForm), name='login'),
     path('register/', user_views.register, name='register'),
-
-	path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    
+# -----------------------------------------------------------------------------------------------------
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+# -----------------------------------------------------------------------------------------------------
 	path('dashboard/',expense_views.dashboard, name='dashboard'),
+    path('detail_expense/<int:id>',expense_views.detailexpense_view, name='Detail expense'),
     path('add_expense/',expense_views.add_expense,name='New Expense'),
     path("update_expense/<int:id>",expense_views.update_expense,name='Update Expense'),
     path("delete_expense/<int:id>",expense_views.delete_expense,name='Delete Expense'),
     path("approve_expense/<int:id>",expense_views.approve_expese,name='Approve Expense'),
     path("reject_expense/<int:id>",expense_views.reject_expese,name='Reject Expense'),
 
-
-
-
-    
+# -----------------------------------------------------------------------------------------------------
     path('managecustomer/',expense_views.customer_view,name='Manage Customer'),
-    
     path('deletecustomer/<int:id>',expense_views.customer_del,name='Delete Customer'),
-    path('disablecustomer/<int:id>',expense_views.customer_disable,name='disable Customer'),
-    path('enablecustomer/<int:id>',expense_views.customer_enable,name='enable Customer'),
+    path('disablecustomer/<int:id>',expense_views.customer_disable,name='Disable Customer'),
+    path('enablecustomer/<int:id>',expense_views.customer_enable,name='Enable Customer'),
     path("updatecustomer/<int:id>",expense_views.customer_update,name='Update Customer'),
     
     

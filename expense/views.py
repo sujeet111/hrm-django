@@ -13,11 +13,31 @@ from django.contrib import messages
 
 @login_required(login_url='/login/')
 def dashboard(request):
-    sum_amount=0
-    field = Expense_data.objects.filter(Name_of_the_engineer_call_attended=request.user.username)
-    for i in field:
-        sum_amount = sum_amount + i.Expenses
-    return render(request,'dashboard.html', {'field':field,'sum_amount':sum_amount})
+    if request.user.is_authenticated:
+        if request.user.is_active:
+            sum_amount=0
+            if request.user.is_superuser:
+                field = Expense_data.objects.all()
+            else:
+                field = Expense_data.objects.filter(Name_of_the_engineer_call_attended=request.user.username)
+                
+            for i in field:
+                sum_amount = sum_amount + i.Expenses
+            return render(request,'dashboard.html', {'field':field,'sum_amount':sum_amount})
+        messages.warning(request,'Account No Longer Valid.')
+        return redirect()
+    
+    return redirect()
+
+@login_required(login_url='/login/')
+def detailexpense_view(request,id):
+    if request.user.is_active:
+        field = Expense_data.objects.filter(id=id).values()[0]
+        print(field)
+        # companyname = Customer_data.objects.get(id=field.Company_Name_id)
+        return render(request,'detailview.html', {'field':field})
+    messages.warning(request,'Account No Longer Valid.')
+    return redirect()
     
 @login_required(login_url='/login/')
 def add_expense(request):
