@@ -17,11 +17,11 @@
         <p class='h3 m-3'>Recently Added</p>
         {% for x in field %}
             {% if x.Approved_status == None %}
-                <div class="card text-dark border-warning m-2 border border-3 ">
+                <div class="card text-dark border-warning m-2 border border-5 ">
             {% elif x.Approved_status == True %}
-                <div class="card text-dark border-success m-2 border border-3">
+                <div class="card text-dark border-success m-2 border border-5">
             {% elif x.Approved_status == False %}
-                <div class="card text-dark border-danger m-2 border border-3">
+                <div class="card text-dark border-danger m-2 border border-5">
             {% endif %}
                 <div class='row'>
                     <div class='col-md-1'></div>
@@ -29,22 +29,28 @@
                         <div class="card-body">
                             <h5 class="card-title">Rs. {{x.Expenses}}</h5>
                             <p class="card-text">{{x.Company_Name}}</p>
-                            <p class="card-text">{{x.Approved_status}}</p>
                         </div>
                     </div>
                     <div class='card-body col-md-3 d-flex align-items-center text-black'>
-                        <a href='{% url "Update Expense" x.id %}'>Edit</a>
+                        <a href='{% url "Update Expense" x.id %}'>
+                            <i class="fa-solid fa-pen-to-square fa-2x text-black"></i>
+                        </a>
                         &ensp;|&ensp;
-                        <a href='{% url "Delete Expense" x.id %}'>Delete</a>
+                        <a href='{% url "Delete Expense" x.id %}'>
+                            <i class="fa-solid fa-trash fa-2x text-black"></i>
+                        </a>
                         {% if user.is_superuser %}
                             {% if x.Approved_status or x.Approved_status == None  %}
                                 &ensp;|&ensp;
-                                <a href='{% url "Approve Expense" x.id %}'>Approve</a>
+                                <a href='{% url "Approve Expense" x.id %}'>
+                                    <i class="fa-solid fa-thumbs-up fa-2x text-black"></i>
+                                </a>
                             {% endif%}
                             {% if not x.Approved_status or x.Approved_status == None %}
                                 &ensp;|&ensp;
-                                <a href='{% url "Reject Expense" x.id %}'>Reject</a>
-                            {% endif%}
+                                <a href='{% url "Reject Expense" x.id %}'>
+                                    <i class="fa-solid fa-thumbs-down fa-2x text-black"></i></a>
+                            {% endif %}
                         {% endif%}
                     </div>
                 </div>
@@ -57,6 +63,5 @@
 border-radius: 100px;' >
         <a class='text-white' href="{% url 'New Expense'%}">New expense</a>
     </div>
-</div>
-
+</div>              
 {% endblock %}
