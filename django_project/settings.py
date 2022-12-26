@@ -27,9 +27,9 @@ if SECRET_KEY is None:
   exit(1)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['bludigit.azurewebsites.net']
+ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = '*'
 
 # Application definition
