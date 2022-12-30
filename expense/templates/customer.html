@@ -14,17 +14,19 @@
                         <th scope="col">City</th>
                         <th scope="col">Address</th>
                         <th scope="col">Created by</th>
+                        <th scope="col">Contact Person</th> 
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for x in field %}
                         <tr>
-                            <th scope="row">{{ forloop.counter }}</th>
+                            <th>{{ forloop.counter }}</th>
                             <td>{{x.name}}</td>
                             <td>{{x.city}}</td>
                             <td>{{x.address}}</td>
-                            <td>{{x.created_by}}</td> 
+                            <td>{{x.created_by}}</td>
+                            <td>{{x.Contact_person}}</td> 
                             <td>
                                 <a href='{% url "Delete Customer" x.id %}'>Delete</a>&ensp;|&ensp;
                                 <a href='{% url "Update Customer" x.id %}'>Edit</a>

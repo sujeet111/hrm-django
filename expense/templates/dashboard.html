@@ -7,8 +7,8 @@
         style="background: linear-gradient(92.21deg, #063C6B -1.44%, #9DC7FF 124.75%);
         color: #FFFFFF;margin-block:12px">
         <div class="card-body">
-            <h5 class="card-title">Rs. {{sum_amount}}</h5>
-            <p class="card-text">Total Amount Claimed</p>
+            <h5 class="card-title">Total Amount Claimed</h5>
+            <p class="card-text">Rs. {{sum_amount}}</p>
         </div>
     </div>
 </div>
@@ -23,45 +23,54 @@
             {% elif x.Approved_status == False %}
                 <div class="card text-dark border-danger m-2 border border-5">
             {% endif %}
-                <div class='row'>
-                    <div class='col-md-1'></div>
-                    <div class='col-md-8'>
-                        <div class="card-body">
-                            <h5 class="card-title">Rs. {{x.Expenses}}</h5>
-                            <p class="card-text">{{x.Company_Name}}</p>
+                    <div class="card-body">
+                        <div class='row'>
+                            <div class='col-md-1'></div>
+                            <div class='col-md-8'>
+                                    <h5 class="card-title">{{x.Company_Name}}</h5>
+                                    <p class="card-text">Rs. {{x.Expenses}}</p>
+                            </div>
+                            <div class='col-md-3 d-flex align-items-center text-black'>
+                                <a class='card-link' href='{% url "Update Expense" x.id %}'>
+                                    <i class="fa-solid fa-pen-to-square fa-2x text-black"></i>
+                                </a>
+                                &ensp;|&ensp;
+                                <a class='card-link' href='{% url "Delete Expense" x.id %}'>
+                                    <i class="fa-solid fa-trash fa-2x text-black"></i>
+                                </a>
+                                {% if user.is_superuser %}
+                                    {% if not x.Approved_status or x.Approved_status == None  %}
+                                        &ensp;|&ensp;
+                                        <a class='card-link' href='{% url "Approve Expense" x.id %}'>
+                                            <i class="fa-solid fa-thumbs-up fa-2x text-black"></i>
+                                        </a>
+                                    {% endif%}
+                                    {% if x.Approved_status or x.Approved_status == None %}
+                                        &ensp;|&ensp;
+                                        <a class='card-link' href='{% url "Reject Expense" x.id %}'>
+                                            <i class="fa-solid fa-thumbs-down fa-2x text-black"></i></a>
+                                    {% endif %}
+                                {% endif%}
+                                &ensp;|&ensp;
+                                <a class='card-link' href='{% url "Detail Expense" x.id %}'>
+                                <i class="fa-solid fa-circle-info fa-2x text-black"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <div class='card-body col-md-3 d-flex align-items-center text-black'>
-                        <a href='{% url "Update Expense" x.id %}'>
-                            <i class="fa-solid fa-pen-to-square fa-2x text-black"></i>
-                        </a>
-                        &ensp;|&ensp;
-                        <a href='{% url "Delete Expense" x.id %}'>
-                            <i class="fa-solid fa-trash fa-2x text-black"></i>
-                        </a>
-                        {% if user.is_superuser %}
-                            {% if x.Approved_status or x.Approved_status == None  %}
-                                &ensp;|&ensp;
-                                <a href='{% url "Approve Expense" x.id %}'>
-                                    <i class="fa-solid fa-thumbs-up fa-2x text-black"></i>
-                                </a>
-                            {% endif%}
-                            {% if not x.Approved_status or x.Approved_status == None %}
-                                &ensp;|&ensp;
-                                <a href='{% url "Reject Expense" x.id %}'>
-                                    <i class="fa-solid fa-thumbs-down fa-2x text-black"></i></a>
-                            {% endif %}
-                        {% endif%}
+                    <div class='card-footer'>
+                        <small class="text-muted">Created on {{x.Timestamp}} by {{x.created_by}}</small>
+                        {% if not x.Approved_status == Null %}
+                            <small class="text-muted text-end">&ensp;|&ensp;</small>
+                        {% endif %}
                     </div>
                 </div>
-            </div>
             {% endfor %}
             
 </div>
-<div class='container-fluid'>
-    <div class='btn mb-2 btn-lg col-11 fixed-bottom bottom-0 start-50 translate-middle-x' style='background: #063C6B;
+<div class='container-fluid p-2'><hr style='color:white'></div>
+<div class='btn mb-2 btn-lg col-11 fixed-bottom bottom-0 start-50 translate-middle-x' style='background: #063C6B;
 border-radius: 100px;' >
         <a class='text-white' href="{% url 'New Expense'%}">New expense</a>
-    </div>
-</div>              
+</div>
+              
 {% endblock %}
