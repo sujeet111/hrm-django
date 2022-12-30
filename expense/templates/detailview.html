@@ -1,70 +1,139 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class='container' style='width:60%'>
-        <table class="table">
-            {% for i,j in field.items %}
-            <tr>
-                <td>{{ i }}</td>
-                <td>{{ j }}</td>
-            </tr>
-            {% endfor %}
+    <div class='container'>
+        <p class='display-5 d-flex justify-content-center p-2'>Service Call Report</p>
+        <p class='text-muted text-center pb-2 m-0'>
+            Created by : {{companyname.created_by}}
+            &ensp;|&ensp;
+            Created on : {{field.Timestamp}}</p>
+        <p class='text-muted text-center pb-2 m-0'>
+            Status Modified by : {{field.Approved_status}}
+            &ensp;|&ensp;
+            Modified on : {{field.Approved_Timestamp}}
+        </p>
+        <table class="table p-4 font-monospace">
+            <tbody>
+                <tr>
+                    <td scope="col">Customer Name:</td>
+                    <td scope="col">{{field.Company_Name}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Visit Date:</td>
+                    <td scope="col">{{field.Date_of_Visit}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Address: </td>
+                    <td scope="col">{{companyname.address}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Contact Person Name: </td>
+                    <td scope="col">{{companyname.Contact_person}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Expense Category: </td>
+                    <td scope="col">{{field.Expense_category}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Visit_purpose</td>
+                    <td scope="col">{{field.Visit_purpose}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Expenses</td>
+                    <td scope="col">{{field.Expenses}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Visit_Type</td>
+                    <td scope="col">{{field.Visit_Type}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">FCR_IR_SCR_Report_Number</td>
+                    <td scope="col">{{field.FCR_IR_SCR_Report_Number}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Call_Recived</td>
+                    <td scope="col">{{field.Call_Recived}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Call_Attended</td>
+                    <td scope="col">{{field.Call_Attended}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Call_Completed</td>
+                    <td scope="col">{{field.Call_Completed}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Call_Status</td>
+                    <td scope="col">{{field.Call_Status}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Voltage_earthing</td>
+                    <td scope="col">{{field.Voltage_earthing}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Machine_type</td>
+                    <td scope="col">{{field.Machine_type}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Machine_model</td>
+                    <td scope="col">{{field.Machine_model}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Machine_serial_number</td>
+                    <td scope="col">{{field.Machine_serial_number}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Problem_Encountered</td>
+                    <td scope="col">{{field.Problem_Encountered}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Solution_provided</td>
+                    <td scope="col">{{field.Solution_provided}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Room_temperature</td>
+                    <td scope="col">{{field.Room_temperature}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Dust_free</td>
+                    <td scope="col">{{field.Dust_free}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">List_of_Spares_Used</td>
+                    <td scope="col">{{field.List_of_Spares_Used}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">List_of_Parts_Replaced</td>
+                    <td scope="col">{{field.List_of_Parts_Replaced}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Customer_Comments</td>
+                    <td scope="col">{{field.Customer_Comments}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Customer_Feedback</td>
+                    <td scope="col">{{field.Customer_Feedback}}</td>
+                </tr>
+                <tr>
+                    <td scope="col">Remark</td>
+                    <td scope="col">{{field.Remark}}</td>
+                </tr>
+            </tbody>    
         </table>
     </div>
 {% endblock %}
 
-
-
-
-<!--        <tr>
-                <td>Company Name</td>
-                <td>{{companyname}}</td>
-            </tr>
-            <tr>
-                <td>Date of visit</td>
-                <td>{{field.Date_of_visit}}</td>
-            </tr>
-            <tr>
-                <td>Visit Type</td>
-                <td>{{field.Visit_type}}</td>
-            </tr>
-            <tr>
-                <td>FCR_IR_SCR_Report_Number</td>
-                <td>{{field.FCR_IR_SCR_Report_Number}}</td>
-            </tr>
-            <tr>
-                <td>Company Name</td>
-                <td>{{field.companyname}}</td>
-            </tr> -->
-
-
-<!-- id : 1
-Timestamp : Dec. 23, 2022, 8:04 a.m.
-Date_of_visit : Dec. 31, 2022            
-Visit_type : INSTALLTIO
-FCR_IR_SCR_Report_Number : 123456764            
-Call_recived_date_and_time : Dec. 17, 2022              
-Call_attended_date_and_time : Dec. 8, 2022
-Call_completed_date_and_time : Dec. 10, 2022
-Machine_type : m1
-Machine_model : m2
-Machine_serial_number : 12345321
-Solution_provided : quickfix
-Room_temperature : 6767
-Dust_free : Yes
-Voltage_earthing : 223
-List_of_spares_used : jgyyigu
-Customer_feedback : jhgbjhg
-Customer_comments : jygiuytguy
-Engineer_sign_name_on_report : True
-Machine_operator_name_on_report : False
-Customer_sign_and_stamp_on_report : True
-Name_of_the_engineer_call_attended : Sujeet111
-Visit_purpose : Customer Support
-List_of_parts_replaced : jygju
-Expenses : 12000
-Remark : parts purchased
-Company_Name_id : 1
-Requirements : none
-Approved_status : None
-Expense_category : Parts Replaced -->
+<!-- 
+    # ----------------------------------------------------------------
+    Problem_Encountered = models.CharField(max_length=300)
+    Room_temperature = models.CharField(max_length=10,blank=True,null=True)
+    Dust_free = models.CharField(max_length=5,choices=dust_free_choice)
+    Solution_provided= models.CharField(max_length=300)
+    # ----------------------------------------------------------------
+    List_of_Spares_Used = models.CharField(max_length=30,blank=True)
+    List_of_Parts_Replaced = models.CharField(max_length=30,blank=True)
+    # ----------------------------------------------------------------
+    Customer_Comments = models.CharField(max_length=30,blank=True)
+    Customer_Feedback = models.CharField(max_length=30,blank=True)
+    # ----------------------------------------------------------------
+    Remark = models.CharField(max_length=300,blank=True,null=True) -->

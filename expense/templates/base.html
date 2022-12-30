@@ -35,7 +35,7 @@
     <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand"id='img-padding' href="#">
+            <a class="navbar-brand"id='img-padding' href="{% url 'dashboard' %}">
                 {% load static %}
                 <img alt="Image placeholder" height="70" id='img-padding' src="{% static 'bludigit-logo 1.svg' %}">
             </a>
@@ -53,7 +53,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
                     {% if user.is_superuser %}
                         <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Analytics</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Analytics' %}">Analytics</a></li>
                     {% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'Manage Customer' %}">Manage Customer</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Profile</a></li>
