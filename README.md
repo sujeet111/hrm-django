@@ -1,32 +1,22 @@
-# Python on Replit
+#HR Management Portal
+Welcome to the HR Management Portal! This portal is designed to streamline and simplify HR processes for your organization. With this portal, you can manage employee information, track time off requests, and access company policies and resources.
 
-This is a template to get you started with Python on Replit. It's ready to go so you can just hit run and start coding!
+#Features
+1.Employee directory: View and update employee contact and personal information
+2.Time off tracking: Request and approve time off, view time off balances
+3.Policy library: Access company policies and guidelines
+4.Resource center: View company forms and other HR resources
+#Getting Started
+1.Clone the repository to your local machine
+2.Install the required dependencies (listed in Requirements.txt)
+3.Run the development server with python manage.py runserver
+4.Open a web browser and navigate to http://localhost:8000 to access the portal
+#Contributing
+We welcome contributions to the HR Management Portal! If you would like to contribute, please follow these guidelines:
 
-## Running the repl
-
-1. Setup a new secret environment variable (the lock icon) where the key is `SECRET_KEY` and the value is
-   a randomly generated token of 32 bits of randomnese. To generate such a token type this into the shell and hit Enter:
-```
-python
-import secrets
-secrets.token_urlsafe(32)
-```
-2. Hit run!
-
-See this 1 minute video for a walkthrough: [https://www.loom.com/share/ecc4e738149f4d1db3bcff01758b3e71](https://www.loom.com/share/341b5574d12040fb9fcbbff150777f1c)
-
-## Installing packages
-
-To add packages to your repl, you can just import directly in the file you want to use the package in, and it will automatically be installed when you press the run button. Like below:
-```python
-import math
-import pandas as pd
-```
-
-You could also install packages by using the Replit packager interface in the left sidebar.
-
-## Help
-
-If you need help you might be able to find an answer on our [docs](https://docs.replit.com) page. Feel free to report bugs and give us feedback [here](https://replit.com/support).
+Fork the repository and create a new branch for your changes
+Make your changes and test thoroughly 
+Submit a pull request for review
+Thank you for considering a contribution to the HR Management Portal. Together, we can make HR processes more efficient and user-friendly for our organization.
 
 
